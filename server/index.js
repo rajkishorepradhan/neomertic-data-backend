@@ -5,6 +5,11 @@ const app = express();
 const inference_result = require("./controller/inference_controller")
 require("./config/mongoose").init();
 
+
+const options = {
+    origin: "*",
+  };
+  app.use(cors(options));
 // Api End Points
 app.use("/data",inference_result )
 
