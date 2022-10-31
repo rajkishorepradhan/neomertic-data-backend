@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
+require('mongoose-double')(mongoose);
 const { Schema, model } = require("mongoose");
 
 const SchemaTypes = mongoose.Schema.Types;
@@ -13,16 +14,16 @@ const inferanceSchema = new Schema(
       required: true,
     },
     l: {
-      type: SchemaTypes.Decimal128,
+      type: SchemaTypes.Double,
     },
     b: {
-      type: SchemaTypes.Decimal128,
+      type: SchemaTypes.Double,
     },
     h: {
-      type: SchemaTypes.Decimal128,
+      type: SchemaTypes.Double,
     },
     volume: {
-      type: SchemaTypes.Decimal128,
+      type: SchemaTypes.Double,
     },
     timestamps: {
       type: Date,
