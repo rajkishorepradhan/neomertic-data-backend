@@ -11,7 +11,7 @@ const options = {
   };
   app.use(cors(options));
 // Api End Points
-app.use("/data",inference_result )
+app.use("/data",inference_result)
 
 const port= 8080;
 

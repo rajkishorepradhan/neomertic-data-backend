@@ -204,6 +204,34 @@ router.get("/get_volume_per_hour/:start_date", async (req, res) => {
       // { $group:{ _id:'$department.name', totalEmployees: { $sum:1 } } 
     ])
 
+
+    // Aggregation for L,B,H Box wise 
+    const box_wise_lbh = await inferanceModel.aggregate([
+        {
+          $match : {
+            timestamps: { $gte: original_date, $lt: date2 },
+          }
+        },
+        {
+          $project : {
+            class_name : 1,
+            l : 1,
+            b : 1,
+            h : 1,
+          }
+        },
+        {
+          $group: {
+            _id:'$class_name',
+            total_l : {$sum : "$l"},
+            total_b : {$sum : "$b"},
+            total_h : {$sum : "$h"}, 
+          }
+        }
+    ])
+
+    console.log("box_wise_lbh", box_wise_lbh)
+
     // console.log(aggregate_box_volume)
    //  console.log(original_date);
 
@@ -260,6 +288,7 @@ router.get("/get_volume_per_hour/:start_date", async (req, res) => {
     const final_results = {
       total_volume_time : final_result,
       total_volume_box : aggregate_box_volume,
+      box_wise_lbh : box_wise_lbh,
     }
 
     

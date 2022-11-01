@@ -22,6 +22,11 @@ const inferanceSchema = new Schema(
     h: {
       type: SchemaTypes.Double,
     },
+    w: {
+      type: SchemaTypes.Double,
+      
+    },
+
     volume: {
       type: SchemaTypes.Double,
     },
